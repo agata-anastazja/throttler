@@ -1,0 +1,182 @@
+; This is the Calva REPL Window.
+; It's just a file, really, with some special treatment from Calva.
+; Use it as a REPL input prompt if you like. (When the REPL is connected.)
+; TIPS: The keyboard shortcut `ctrl+alt+o r` shows and focuses this window
+; Please see https://calva.io/repl-window/ for more info.
+; Happy coding! ♥️
+
+; TIPS: As with any Clojure file when the REPL is connected:
+; - `alt+enter` evaluates the current top level form.
+; - `ctrl+enter` evaluates the current form.
+; Special for this file:
+; - `alt+up` and `alt+down` traverse up and down the REPL command history
+;    when the cursor is after the last contents at the prompt
+; 
+; See also the Calva Inspector: https://calva.io/inspector/
+
+PLEASE NOTE
+We will update the default location of this file.
+The new default location will be
+  "<projectRootPath>/.calva/repl.calva-repl"
+For now the legacy path is used by default.
+To give yourself a smooth transition, you can opt in
+to the change, by configuring this setting as false:
+  "calva.useLegacyReplWindowPath"
+and then add "**/.calva/repl.calva-repl" to your ".gitignore" file.
+
+
+This file is configured as the output destination for all REPL output.
+You can configure this with the setting:
+  "calva.outputDestinations"
+
+
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+
+; Starting Jack-in Terminal: (cd /Users/agatasumowska/Documents/dev/throttler; lein update-in :dependencies conj '[nrepl,"1.1.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.47.1"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless)
+; Using host:port 127.0.0.1:53704 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+"Please see https://calva.io/output/#about-stdout-in-the-repl-window
+about why stdout printed to this file is prepended with `;` to be line comments."
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+; Evaluating file: core.clj
+nil
+clj꞉throttler.core꞉> 
+#'throttler.core/+#
+clj꞉throttler.core꞉> 
+; [:token #object[clojure.core.async.impl.channels.ManyToManyChannel 0x21380788 clojure.core.async.impl.channels.ManyToManyChannel@21380788]]
+; [:token #object[clojure.core.async.impl.channels.ManyToManyChannel 0x5ddb7a91 clojure.core.async.impl.channels.ManyToManyChannel@5ddb7a91]]
+#'throttler.core/+#
+clj꞉throttler.core꞉> 
+; [false :default]
+; [false :default]
+; [false :default]
+; [false :default]
+; [false :default]
+; [false :default]
+; [false :default]
+; [false :default]
+; [false :default]
+; [false :default]
+; 2 
+; 2 
+; 2 
+; 2 
+; 2 
+; 2 
+; 2 
+; 2 
+; 2 
+; 2 
+nil
+clj꞉throttler.core꞉> 
+#'throttler.core/chan-throttler*
+clj꞉throttler.core꞉> 
+#'throttler.core/+#
+clj꞉throttler.core꞉> 
+; :token
+; :token
+#'throttler.core/+#
+clj꞉throttler.core꞉> 
+; 2 
+; Execution error (IllegalArgumentException) at throttler.core$fn_throttler$fn__20291$fn__20292/doInvoke (core.clj:159).
+; No matching clause: :rejected
+clj꞉throttler.core꞉> 
+; Syntax error compiling at (core.clj:163:12).
+; Unable to resolve symbol: failure-f in this context
+clj꞉throttler.core꞉> 
+; Syntax error compiling at (core.clj:1:8228).
+; Unable to resolve symbol: failure-f in this context
+clj꞉throttler.core꞉> 
+; Syntax error compiling at (core.clj:1:8228).
+; Unable to resolve symbol: f in this context
+clj꞉throttler.core꞉> 
+; Evaluating file: core.clj
+nil
+clj꞉throttler.core꞉> 
+#'throttler.core/+#
+clj꞉throttler.core꞉> 
+; :token
+; :token
+#'throttler.core/+#
+clj꞉throttler.core꞉> 
+; 2 
+; Execution error (ArityException) at throttler.core$fn_throttler$fn__21005$fn__21006/doInvoke (core.clj:163).
+; Wrong number of args (2) passed to: throttler.core/fn--21014
+clj꞉throttler.core꞉> 
+; Evaluating file: core.clj
+nil
+clj꞉throttler.core꞉> 
+#'throttler.core/+#
+clj꞉throttler.core꞉> 
+; :token
+; :token
+#'throttler.core/+#
+clj꞉throttler.core꞉> 
+; 2 
+; failure
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+
+; Starting Jack-in Terminal: (cd /Users/agatasumowska/Documents/dev/throttler; lein update-in :dependencies conj '[nrepl,"1.1.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.47.1"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless)
+; nREPL Connection was closed
+; Using host:port 127.0.0.1:53791 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+; Evaluating file: core.clj
+nil
+clj꞉throttler.core꞉> 
+#'throttler.core/+#
+clj꞉throttler.core꞉> 
+; :token
+; :token
+#'throttler.core/+#
+clj꞉throttler.core꞉> 
+; :token
+; 2 
+; 2 
+; failure
+; nil 
+; failure
+; nil 
+; failure
+; nil 
+; failure
+; nil 
+; failure
+; nil 
+; failure
+; nil 
+; failure
+; nil 
+; failure
+; nil 
+nil
+clj꞉throttler.core꞉> 
+; failure
+; :token
+nil
+clj꞉throttler.core꞉> 
+2
+clj꞉throttler.core꞉> 
+; failure
+; :token
+nil
+clj꞉throttler.core꞉> 
