@@ -1,9 +1,7 @@
 (ns throttler.core
-  (:require [clojure.core.async :refer [chan <!! >!! >! <! timeout go close! dropping-buffer]]))
+  (:require [clojure.core.async :refer [chan <!! >!! >! <! timeout go close! dropping-buffer alts!]]))
 
-;; To keep the throttler precise even for high frequencies, we set up a
-;; minimum sleep time. In my tests I found that below 10 ms the actual
-;; sleep time has an error of more than 10%, so we stay above that.
+
 (def ^{:no-doc true} min-sleep-time 10)
 
 (defn- round [n] (Math/round (double n)))
@@ -33,8 +31,8 @@
     ;; sleep-time seconds. If the bucket is full the token is dropped
     ;; since the bucket channel uses a dropping buffer.
     (go
-     (while (>! bucket :token)
-       (<! (timeout (int sleep-time)))))
+      (while (>! bucket :token)
+        (<! (timeout (int sleep-time)))))
 
     ;; The piping thread. Takes a token from the bucket (blocking until
     ;; one is ready if the bucket is empty), and forwards token-value
@@ -48,10 +46,14 @@
     (fn [c]
       (let [c' (chan)] ; the throttled chan
         (go
-          (while (<! bucket) ; block for a token
-            (dotimes [_ token-value]
-              (when-not (pipe c c')
-                (close! bucket)))))
+          ;; (while (<! bucket) ; block for a token
+          (while true
+            (let [[v _]  (alts! [bucket] :default false)]
+              (if v
+                (dotimes [_ token-value]
+                  (when-not (pipe c c')
+                    (close! bucket)))
+                (>! c' :rejected)))))
         c'))))
 
 (defn chan-throttler
@@ -71,21 +73,11 @@
   ([rate unit]
    (chan-throttler rate unit 1))
   ([rate unit bucket-size]
-   (when (nil? (unit->ms unit))
-     (throw (IllegalArgumentException.
-             (str "Invalid unit. Available units are: " (keys unit->ms)))))
-
-   (when-not (and (number? rate) (pos? rate))
-     (throw (IllegalArgumentException. "rate should be a positive number")))
-
-   (when (or (not (integer? bucket-size)) (neg? bucket-size))
-     (throw (IllegalArgumentException. "bucket-size should be a non-negative integer")))
-
    (let [rate-ms (/ rate (unit->ms unit))]
      (chan-throttler* rate-ms bucket-size))))
 
 (defn throttle-chan
-     "Takes a write channel, a goal rate and a unit and returns a read
+  "Takes a write channel, a goal rate and a unit and returns a read
       channel. Messages written to the input channel can be read from
       the throttled output channel at a rate that will be at most the
       provided goal rate.
@@ -150,7 +142,7 @@
    (fn-throttler rate unit 1))
 
   ([rate unit bucket-size]
-   (let [in (chan 1)
+   (let [in (chan (dropping-buffer 1))
          out (throttle-chan in rate unit bucket-size)]
 
      ;; This function takes a function and produces a throttled
@@ -159,13 +151,15 @@
      ;; resulting in a globally shared rate. I.e., the sum af the
      ;; rates of all functions will be at most the argument rate).
 
-     (fn [f]
+     (fn [f failure]
        (fn [& args]
           ;; The approach is simple: pipe a bogus message through a
           ;; throttled channel before evaluating the original function.
          (>!! in :eval-request)
-         (<!! out)
-         (apply f args))))))
+         (case
+          (<!! out)
+           :eval-request (apply f args)
+           (apply failure args)))))))
 
 (defn throttle-fn
   "Takes a function, a goal rate and a time unit and returns a
@@ -175,8 +169,36 @@
   Optionally accepts a burst rate, in which case the resulting function
   will behave like a bursty channel. See throttle-chan for details."
 
-  ([f rate unit]
-   (throttle-fn f rate unit 1))
+  ;; ([f  rate unit]
+  ;;  (throttle-fn f rate unit 1))
 
-  ([f rate unit bucket-size]
-   ((fn-throttler rate unit bucket-size) f)))
+  ([f failure-f rate unit bucket-size]
+   ((fn-throttler rate unit bucket-size) f failure-f)))
+
+(comment
+
+
+  (def +# (throttle-fn + (fn [& _] (println "failure")) 1 :minute 1))
+
+
+  ;;  (fn [f]
+  ;;   (fn [& args]
+  ;;           ;; The approach is simple: pipe a bogus message through a
+  ;;           ;; throttled channel before evaluating the original function.
+  ;;     (>!! in :eval-request)
+  ;;     (<!! out)
+  ;;     (apply f args)))
+  ;; (fn [& args]
+  ;;     (>!! in :eval-request)
+  ;;     (<!! out)
+  ;;     (apply + args))
+
+  (def tomato-echo (chan 2))
+  (>!! tomato-echo :sth)
+  (<!! tomato-echo)
+  (close! tomato-echo)
+  (when-not nil (print "lol"))
+  (+# 1 1) ; => 2
+  (dotimes [_ 10] (print (+# 1 1) "\n"))
+  (time (dotimes [_ 200] (+# 1 1)))
+  (apply str `(1 2 3)))
