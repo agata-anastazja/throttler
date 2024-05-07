@@ -731,3 +731,87 @@ nil
 clj꞉throttler.core-copy꞉> 
 2
 clj꞉throttler.core-copy꞉> 
+#'throttler.core-copy/throttle-fn
+clj꞉throttler.core-copy꞉> 
+#'throttler.core-copy/+#
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+#'throttler.core-copy/throttle-fn
+clj꞉throttler.core-copy꞉> 
+#'throttler.core-copy/+#
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 

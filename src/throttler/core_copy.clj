@@ -100,8 +100,7 @@
       The throttled channel will be closed when the input channel
       closes."
 
-  ([c rate unit]
-   (throttle-chan c rate unit 1))
+  
 
   ([c rate unit bucket-size]
    ((chan-throttler rate unit bucket-size) c)))
@@ -118,19 +117,15 @@
 
 
   [f failure-f rate unit bucket-size]
-  (((fn [rate unit bucket-size]
-      (let [in (chan (dropping-buffer 1))
-            out (throttle-chan in rate unit bucket-size)]
-        (fn [f failure]
-          (fn [& args]
-            (>!! in :eval-request)
-            (case
-             (<!! out)
-              :eval-request (apply f args)
-              (apply failure args)))))) rate unit bucket-size) f failure-f))
+  (let [in (chan (dropping-buffer 1))
+        out (throttle-chan in rate unit bucket-size)] 
+    (fn [& args]
+      (>!! in :eval-request)
+      (case
+       (<!! out)
+        :eval-request (apply f args)
+        (apply failure-f args)))))
 
-(defn experiment []
-  (fn[x] (println x)))
 
 
 (comment
