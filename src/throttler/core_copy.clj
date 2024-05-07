@@ -1,4 +1,4 @@
-(ns throttler.core
+(ns throttler.core-copy
   (:require [clojure.core.async :refer [chan <!! >!! >! <! timeout go close! dropping-buffer alts!]]))
 
 
@@ -106,60 +106,7 @@
   ([c rate unit bucket-size]
    ((chan-throttler rate unit bucket-size) c)))
 
-(defn fn-throttler
-  "Creates a function that will globally throttle multiple functions at
-   the provided rate.  The returned function accepts a function and
-   produces an equivalent one that complies with the desired rate. If
-   applied to many functions, the sum af all their invocations in a time
-   interval will sum up to the goal average rate.
 
-   Example:
-       ; create the function throttler
-       (def slow-to-1-per-minute (fn-throttler 1 :minute)
-
-       ; create slow versions of f1, f2 and f3
-       (def f1-slow (slow-to-1-per-minute f1)
-       (def f2-slow (slow-to-1-per-minute f2)
-       (def f3-slow (slow-to-1-per-minute f3)
-
-       ; use them to do work. Their aggregate rate will be equal to 1
-       ; call/minute
-       (f1-slow arg1 arg2) ; => result, t = 0
-       (f2-slow)           ; => result, t = 1 minute
-       (f3-slow arg)       ; => result, t = 2 minutes
-
-   The combined rate of f1-slow, f2-slow and f3-slow will be equal to
-   'rate'. This does not mean that the rate of each is 1/3rd of
-   'rate'; if only f1-slow is being called then its throughput will be
-   close to rate. Or, if one of the functions is being called from
-   multiple threads then it'll get a greater share of the total
-   bandwith.
-
-   In other words, the functions will use statistical multiplexing to
-   cap the allotted bandwidth."
-
-  ([rate unit]
-   (fn-throttler rate unit 1))
-
-  ([rate unit bucket-size]
-   (let [in (chan (dropping-buffer 1))
-         out (throttle-chan in rate unit bucket-size)]
-
-     ;; This function takes a function and produces a throttled
-     ;; function. When called multiple times, all the resulting
-     ;; throttled functions will share the same throttled channel,
-     ;; resulting in a globally shared rate. I.e., the sum af the
-     ;; rates of all functions will be at most the argument rate).
-
-     (fn [f failure]
-       (fn [& args]
-          ;; The approach is simple: pipe a bogus message through a
-          ;; throttled channel before evaluating the original function.
-         (>!! in :eval-request)
-         (case
-          (<!! out)
-           :eval-request (apply f args)
-           (apply failure args)))))))
 
 (defn throttle-fn
   "Takes a function, a goal rate and a time unit and returns a
@@ -169,11 +116,18 @@
   Optionally accepts a burst rate, in which case the resulting function
   will behave like a bursty channel. See throttle-chan for details."
 
-  ;; ([f  rate unit]
-  ;;  (throttle-fn f rate unit 1))
 
-  ([f failure-f rate unit bucket-size]
-   ((fn-throttler rate unit bucket-size) f failure-f)))
+  [f failure-f rate unit bucket-size]
+  (((fn [rate unit bucket-size]
+      (let [in (chan (dropping-buffer 1))
+            out (throttle-chan in rate unit bucket-size)]
+        (fn [f failure]
+          (fn [& args]
+            (>!! in :eval-request)
+            (case
+             (<!! out)
+              :eval-request (apply f args)
+              (apply failure args)))))) rate unit bucket-size) f failure-f))
 
 (defn experiment []
   (fn[x] (println x)))
@@ -182,7 +136,7 @@
 (comment
 
 
-  (def +# (throttle-fn + (fn [& _] (println "failure")) 1 :minute 1))
+  (def +# (throttle-fn + (fn [& _] (println "failure")) 1 :second 1))
 
 
   ;;  (fn [f]
@@ -206,7 +160,7 @@
   (when-not nil (print "lol"))
   (+# 1 1) ; => 2
   (dotimes [_ 10] (print (+# 1 1) "\n"))
-  (time (dotimes [_ 200] (+# 1 1)))
+  (time (dotimes [_ 1] (+# 1 1)))
   (apply str `(1 2 3))
 
   )

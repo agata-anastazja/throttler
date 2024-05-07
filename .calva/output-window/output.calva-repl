@@ -37,7 +37,7 @@ You can configure this with the setting:
 ; 
 
 ; Starting Jack-in Terminal: (cd /Users/agatasumowska/Documents/dev/throttler; lein update-in :dependencies conj '[nrepl,"1.1.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.47.1"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless)
-; Using host:port 127.0.0.1:53704 ...
+; Using host:port 127.0.0.1:50792 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
@@ -48,82 +48,7 @@ about why stdout printed to this file is prepended with `;` to be line comments.
 clj꞉user꞉> 
 ; Jack-in done.
 clj꞉user꞉> 
-; Evaluating file: core.clj
-nil
-clj꞉throttler.core꞉> 
-#'throttler.core/+#
-clj꞉throttler.core꞉> 
-; [:token #object[clojure.core.async.impl.channels.ManyToManyChannel 0x21380788 clojure.core.async.impl.channels.ManyToManyChannel@21380788]]
-; [:token #object[clojure.core.async.impl.channels.ManyToManyChannel 0x5ddb7a91 clojure.core.async.impl.channels.ManyToManyChannel@5ddb7a91]]
-#'throttler.core/+#
-clj꞉throttler.core꞉> 
-; [false :default]
-; [false :default]
-; [false :default]
-; [false :default]
-; [false :default]
-; [false :default]
-; [false :default]
-; [false :default]
-; [false :default]
-; [false :default]
-; 2 
-; 2 
-; 2 
-; 2 
-; 2 
-; 2 
-; 2 
-; 2 
-; 2 
-; 2 
-nil
-clj꞉throttler.core꞉> 
-#'throttler.core/chan-throttler*
-clj꞉throttler.core꞉> 
-#'throttler.core/+#
-clj꞉throttler.core꞉> 
-; :token
-; :token
-#'throttler.core/+#
-clj꞉throttler.core꞉> 
-; 2 
-; Execution error (IllegalArgumentException) at throttler.core$fn_throttler$fn__20291$fn__20292/doInvoke (core.clj:159).
-; No matching clause: :rejected
-clj꞉throttler.core꞉> 
-; Syntax error compiling at (core.clj:163:12).
-; Unable to resolve symbol: failure-f in this context
-clj꞉throttler.core꞉> 
-; Syntax error compiling at (core.clj:1:8228).
-; Unable to resolve symbol: failure-f in this context
-clj꞉throttler.core꞉> 
-; Syntax error compiling at (core.clj:1:8228).
-; Unable to resolve symbol: f in this context
-clj꞉throttler.core꞉> 
-; Evaluating file: core.clj
-nil
-clj꞉throttler.core꞉> 
-#'throttler.core/+#
-clj꞉throttler.core꞉> 
-; :token
-; :token
-#'throttler.core/+#
-clj꞉throttler.core꞉> 
-; 2 
-; Execution error (ArityException) at throttler.core$fn_throttler$fn__21005$fn__21006/doInvoke (core.clj:163).
-; Wrong number of args (2) passed to: throttler.core/fn--21014
-clj꞉throttler.core꞉> 
-; Evaluating file: core.clj
-nil
-clj꞉throttler.core꞉> 
-#'throttler.core/+#
-clj꞉throttler.core꞉> 
-; :token
-; :token
-#'throttler.core/+#
-clj꞉throttler.core꞉> 
-; 2 
-; failure
+; nREPL Connection was closed
 ; Jacking in...
 ; Connecting using "Leiningen" project type.
 ; You can make Calva auto-select this.
@@ -131,8 +56,7 @@ clj꞉throttler.core꞉> 
 ; 
 
 ; Starting Jack-in Terminal: (cd /Users/agatasumowska/Documents/dev/throttler; lein update-in :dependencies conj '[nrepl,"1.1.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.47.1"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless)
-; nREPL Connection was closed
-; Using host:port 127.0.0.1:53791 ...
+; Using host:port 127.0.0.1:50800 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
@@ -143,40 +67,667 @@ clj꞉user꞉> 
 ; Evaluating file: core.clj
 nil
 clj꞉throttler.core꞉> 
-#'throttler.core/+#
+"123"
 clj꞉throttler.core꞉> 
-; :token
-; :token
-#'throttler.core/+#
+#'throttler.core/experiment
 clj꞉throttler.core꞉> 
-; :token
-; 2 
-; 2 
-; failure
-; nil 
-; failure
-; nil 
-; failure
-; nil 
-; failure
-; nil 
-; failure
-; nil 
-; failure
-; nil 
-; failure
-; nil 
-; failure
-; nil 
+#'throttler.core/ex
+clj꞉throttler.core꞉> 
+; 123
 nil
 clj꞉throttler.core꞉> 
-; failure
-; :token
+; Syntax error compiling at (core_copy.clj:123:17).
+; Unable to resolve symbol: throttle-chan in this context
+clj꞉throttler.core-copy꞉> 
+; Evaluating file: core_copy.clj
 nil
-clj꞉throttler.core꞉> 
+clj꞉throttler.core-copy꞉> 
+#'throttler.core-copy/throttle-fn
+clj꞉throttler.core-copy꞉> 
+#'throttler.core-copy/+#
+clj꞉throttler.core-copy꞉> 
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; failure
+; "Elapsed time: 60.472223 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.350491 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.343491 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.509847 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.330005 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.281371 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.471584 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.568131 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.278297 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.843986 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.317241 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 1.050795 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.654949 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.30894 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.625687 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.35048 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.377069 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 1.619762 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.346058 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.352637 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.487538 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.292593 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.88187 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.413498 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.830497 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.534349 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.394894 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.335509 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 1.470546 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; "Elapsed time: 0.403327 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+; "Elapsed time: 0.90921 msecs"
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
 2
-clj꞉throttler.core꞉> 
+clj꞉throttler.core-copy꞉> 
 ; failure
-; :token
 nil
-clj꞉throttler.core꞉> 
+clj꞉throttler.core-copy꞉> 
+#'throttler.core-copy/throttle-fn
+clj꞉throttler.core-copy꞉> 
+#'throttler.core-copy/+#
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
+; failure
+nil
+clj꞉throttler.core-copy꞉> 
+2
+clj꞉throttler.core-copy꞉> 
